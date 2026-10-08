@@ -33,7 +33,7 @@ Moderno y limpio, con **serhant.com** como referencia: hero de ciudad a pantalla
 7. **Botón flotante de WhatsApp** siempre visible.
 
 ## Pendiente del cliente (hoy son placeholders)
-- [ ] Número de WhatsApp (`WHATSAPP` en `index.html`)
+- [x] Número de WhatsApp: +52 1 33 3201 2573
 - [ ] **Foto real de Zona Real** (hoy es una foto genérica de Unsplash; no hay fotos libres de esa zona)
 - [ ] Fotos y datos reales de las propiedades (arreglo `PROPIEDADES` en `index.html`)
 - [ ] Cifras reales (años, propiedades cerradas)
