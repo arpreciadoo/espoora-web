@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Espoora | Bienes raíces en Guadalajara</title>
+<meta name="description" content="Casas y departamentos en venta y renta en la Colonia Americana, Zona Real y Puerta de Hierro, Guadalajara. Escríbenos por WhatsApp y te ayudamos a encontrar tu próxima propiedad.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0A1F5C;
+    --navy-glass: rgba(10, 31, 92, 0.88);
+    --blue: #1F5FD6;
+    --ink: #0F172A;
+    --text: #334155;
+    --muted: #64748B;
+    --line: #E2E8F0;
+    --soft: #F4F6FA;
+    --white: #FFFFFF;
+    --wa: #25D366;
+    --wa-dark: #1DA851;
+    --radius: 14px;
+    --max: 1240px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: "Montserrat", system-ui, sans-serif; color: var(--text); background: var(--white); font-weight: 500; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+  .wa-icon { width: 20px; height: 20px; flex: none; }
+
+  /* ---------- Nav ---------- */
+  .nav { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); width: min(calc(100% - 32px), var(--max)); z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 10px 10px 10px 28px; border-radius: 100px; transition: background .3s, box-shadow .3s; }
+  .nav.scrolled { background: var(--navy-glass); backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(10, 31, 92, .25); }
+  .logo { color: var(--white); font-weight: 800; font-size: 22px; letter-spacing: -.02em; white-space: nowrap; }
+  .logo span { color: #7FA8FF; }
+  .nav-links { display: flex; gap: 28px; color: var(--white); font-size: 14px; font-weight: 600; }
+  .nav-links a { opacity: .9; }
+  .nav-links a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 6px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; font-weight: 700; font-size: 15px; border-radius: 100px; padding: 13px 24px; transition: transform .15s, background .2s; white-space: nowrap; }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-wa { background: var(--wa); color: var(--white); }
+  .btn-wa:hover { background: var(--wa-dark); }
+  .btn-white { background: var(--white); color: var(--navy); }
+
+  /* ---------- Hero ---------- */
+  .hero { position: relative; min-height: 88vh; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white); background: var(--navy) url("img/hero-zapopan.jpg") center 60%/cover no-repeat; padding: 140px 24px 160px; }
+  .hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6, 18, 56, .55) 0%, rgba(6, 18, 56, .35) 45%, rgba(6, 18, 56, .7) 100%); }
+  .hero-inner { position: relative; max-width: 980px; }
+  .eyebrow { display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; padding: 8px 16px; border: 1px solid rgba(255,255,255,.4); border-radius: 100px; margin-bottom: 24px; }
+  .hero h1 { font-size: clamp(40px, 7vw, 76px); font-weight: 800; line-height: 1.05; letter-spacing: -.03em; }
+  .hero p { font-size: clamp(16px, 2vw, 20px); margin: 22px auto 34px; max-width: 620px; opacity: .92; }
+  .hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .stats { display: flex; justify-content: center; gap: 48px; margin-top: 56px; flex-wrap: wrap; }
+  .stat strong { display: block; font-size: 32px; font-weight: 800; letter-spacing: -.02em; }
+  .stat span { font-size: 13px; opacity: .8; }
+
+  /* ---------- Properties panel ---------- */
+  .panel { position: relative; background: var(--white); border-radius: 36px 36px 0 0; margin-top: -48px; padding: 72px 0 96px; }
+  .panel-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 36px; }
+  h2 { color: var(--navy); font-size: clamp(32px, 4.5vw, 48px); font-weight: 800; letter-spacing: -.03em; line-height: 1.1; }
+  .sub { color: var(--muted); margin-top: 8px; }
+  .controls { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .search { position: relative; }
+  .search input { font: inherit; font-size: 14px; width: 260px; padding: 12px 16px 12px 42px; border: 1px solid var(--line); border-radius: 100px; background: var(--soft); color: var(--ink); outline: none; }
+  .search input:focus { border-color: var(--blue); background: var(--white); }
+  .search svg { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: var(--muted); }
+  .toggle { display: inline-flex; background: var(--soft); border: 1px solid var(--line); border-radius: 100px; padding: 4px; }
+  .toggle button { font-size: 14px; font-weight: 700; padding: 8px 18px; border-radius: 100px; color: var(--muted); }
+  .toggle button.on { background: var(--navy); color: var(--white); }
+  .select { font: inherit; font-size: 14px; font-weight: 600; padding: 11px 38px 11px 16px; border: 1px solid var(--line); border-radius: 100px; background: var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") right 14px center no-repeat; appearance: none; color: var(--ink); cursor: pointer; }
+
+  .zones { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 96px; }
+  .zone { position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: 440px; padding: 28px; border-radius: 22px; overflow: hidden; color: var(--white); background: var(--navy); text-align: left; isolation: isolate; }
+  .zone img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform .6s; }
+  .zone::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(6,18,56,0) 30%, rgba(6,18,56,.9) 100%); }
+  .zone:hover img { transform: scale(1.05); }
+  .zone-muni { font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; opacity: .8; }
+  .zone h3 { font-size: 28px; font-weight: 800; letter-spacing: -.02em; line-height: 1.15; margin: 6px 0 10px; }
+  .zone p { font-size: 14px; opacity: .9; }
+  .zone-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 18px; }
+  .zone-tags span { font-size: 12px; font-weight: 600; padding: 5px 10px; border-radius: 100px; background: rgba(255,255,255,.16); backdrop-filter: blur(6px); }
+  .zone-link { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; }
+  .zone-link::after { content: "→"; transition: transform .2s; }
+  .zone:hover .zone-link::after { transform: translateX(4px); }
+  .credits { font-size: 11px; color: var(--muted); margin-top: 20px; width: 100%; }
+  .credits a { text-decoration: underline; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px 24px; }
+  .card { display: flex; flex-direction: column; }
+  .card-media { position: relative; aspect-ratio: 4 / 3; border-radius: var(--radius); overflow: hidden; background: linear-gradient(135deg, #1E3A8A, #0A1F5C); }
+  .card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+  .card:hover .card-media img { transform: scale(1.04); }
+  .tag { position: absolute; top: 14px; left: 14px; background: var(--white); color: var(--navy); font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: 6px 10px; border-radius: 6px; }
+  .tag.rent { background: var(--blue); color: var(--white); }
+  .badge { position: absolute; bottom: 14px; left: 14px; background: var(--navy-glass); color: var(--white); font-size: 12px; font-weight: 700; padding: 7px 12px; border-radius: 100px; backdrop-filter: blur(6px); }
+  .card-body { padding: 18px 2px 0; display: flex; flex-direction: column; flex: 1; }
+  .price { color: var(--ink); font-size: 24px; font-weight: 800; letter-spacing: -.02em; }
+  .price small { font-size: 14px; font-weight: 600; color: var(--muted); }
+  .title { color: var(--ink); font-weight: 600; margin-top: 4px; }
+  .loc { color: var(--muted); font-size: 14px; }
+  .specs { display: flex; gap: 18px; margin: 12px 0 18px; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text); }
+  .card .btn-wa { margin-top: auto; padding: 12px 20px; font-size: 14px; }
+  .empty { grid-column: 1 / -1; text-align: center; padding: 48px 16px; color: var(--muted); background: var(--soft); border-radius: var(--radius); }
+
+  /* ---------- CTA ---------- */
+  .cta { background: var(--soft); padding: 96px 0; }
+  .cta-box { background: var(--navy); color: var(--white); border-radius: 28px; padding: 64px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: center; position: relative; overflow: hidden; }
+  .cta-box::after { content: ""; position: absolute; right: -120px; top: -120px; width: 360px; height: 360px; border-radius: 50%; background: radial-gradient(circle, rgba(127,168,255,.35), transparent 70%); }
+  .cta-box h2 { color: var(--white); }
+  .cta-box p { opacity: .85; margin-top: 14px; max-width: 520px; }
+  .cta-actions { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+  .cta-actions .note { font-size: 13px; opacity: .7; }
+
+  /* ---------- Footer ---------- */
+  footer { background: var(--white); border-top: 1px solid var(--line); padding: 40px 0; font-size: 14px; color: var(--muted); }
+  .foot { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .foot .logo { color: var(--navy); font-size: 18px; }
+  .foot .logo span { color: var(--blue); }
+  .foot-links { display: flex; gap: 22px; flex-wrap: wrap; }
+  .foot-links a:hover { color: var(--navy); }
+
+  /* ---------- Floating WhatsApp ---------- */
+  .wa-float { position: fixed; right: 22px; bottom: 22px; z-index: 60; width: 60px; height: 60px; border-radius: 50%; background: var(--wa); color: var(--white); display: grid; place-items: center; box-shadow: 0 10px 28px rgba(37, 211, 102, .45); transition: transform .2s; }
+  .wa-float:hover { transform: scale(1.07); }
+  .wa-float .wa-icon { width: 30px; height: 30px; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 1024px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    .zones { grid-template-columns: 1fr; }
+    .zone { min-height: 340px; }
+    .cta-box { grid-template-columns: 1fr; padding: 48px 36px; }
+  }
+  @media (max-width: 760px) {
+    .nav-links { display: none; }
+    .nav { padding: 8px 8px 8px 20px; background: var(--navy-glass); backdrop-filter: blur(10px); }
+    .nav .btn-wa span { display: none; }
+    .nav .btn-wa { padding: 11px; }
+    .logo { font-size: 18px; }
+    .grid { grid-template-columns: 1fr; }
+    .stats { gap: 28px; }
+    .panel { border-radius: 24px 24px 0 0; padding-top: 56px; }
+    .controls, .search, .search input { width: 100%; }
+    .wrap { padding: 0 16px; }
+    .cta { padding: 64px 0; }
+    .cta-box { padding: 40px 24px; border-radius: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="wa" viewBox="0 0 24 24"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36a9.4 9.4 0 0 1-1.44-5.02c0-5.2 4.24-9.44 9.45-9.44 2.52 0 4.89.99 6.67 2.77a9.38 9.38 0 0 1 2.76 6.68c0 5.2-4.24 9.43-9.45 9.43m8.04-17.47A11.3 11.3 0 0 0 12.05.7C5.78.7.68 5.8.68 12.06c0 2 .52 3.96 1.52 5.68L.58 23.7l6.1-1.6a11.33 11.33 0 0 0 5.37 1.37h.01c6.26 0 11.36-5.1 11.37-11.37 0-3.04-1.18-5.89-3.34-8.04"/></symbol>
+</svg>
+
+<header class="nav" id="nav">
+  <a href="#" class="logo">ESPOORA<span>.</span></a>
+  <nav class="nav-links" aria-label="Principal">
+    <a href="#zonas">Zonas</a>
+    <a href="#propiedades" data-op="venta">Comprar</a>
+    <a href="#propiedades" data-op="renta">Rentar</a>
+    <a href="#contacto">Vender</a>
+  </nav>
+  <a class="btn btn-wa js-wa" data-msg="general" href="#" target="_blank" rel="noopener">
+    <svg class="wa-icon"><use href="#wa"/></svg><span>WhatsApp</span>
+  </a>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">Bienes raíces · Guadalajara y Zapopan</span>
+    <h1>Tu próxima casa en Guadalajara</h1>
+    <p>Compra, venta y renta en la Colonia Americana, Zona Real y Puerta de Hierro. Conocemos cada calle y te acompañamos de la primera visita a la firma.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-wa js-wa" data-msg="general" href="#" target="_blank" rel="noopener">
+        <svg class="wa-icon"><use href="#wa"/></svg>Escríbenos por WhatsApp
+      </a>
+      <a class="btn btn-white" href="#propiedades">Ver propiedades</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><strong>10+</strong><span>años de experiencia</span></div>
+      <div class="stat"><strong>150+</strong><span>propiedades cerradas</span></div>
+      <div class="stat"><strong>24 h</strong><span>tiempo de respuesta</span></div>
+    </div>
+  </div>
+</section>
+
+<main>
+  <section class="panel">
+    <div class="wrap">
+      <div class="panel-head" id="zonas">
+        <div>
+          <h2>Zonas donde trabajamos</h2>
+          <p class="sub">Tres zonas de Guadalajara que conocemos a fondo: precios, calles, desarrollos y lo que viene.</p>
+        </div>
+      </div>
+      <div class="zones" id="zones"></div>
+
+      <div class="panel-head" id="propiedades">
+        <div>
+          <h2>Propiedades destacadas</h2>
+          <p class="sub">Selección actualizada en nuestras tres zonas. Pregunta por cualquiera y te respondemos por WhatsApp.</p>
+        </div>
+        <div class="controls">
+          <label class="search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <input id="q" type="search" placeholder="Buscar por zona o nombre" aria-label="Buscar propiedades">
+          </label>
+          <div class="toggle" role="group" aria-label="Operación">
+            <button data-op="venta" class="on">Comprar</button>
+            <button data-op="renta">Rentar</button>
+          </div>
+          <select class="select" id="zona" aria-label="Zona">
+            <option value="">Todas las zonas</option>
+          </select>
+          <select class="select" id="tipo" aria-label="Tipo de propiedad">
+            <option value="">Todos los tipos</option>
+            <option value="Casa">Casas</option>
+            <option value="Departamento">Departamentos</option>
+          </select>
+        </div>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="cta" id="contacto">
+    <div class="wrap">
+      <div class="cta-box">
+        <div>
+          <h2>¿Buscas, vendes o rentas? Hablemos.</h2>
+          <p>Cuéntanos qué necesitas: zona, presupuesto y tipo de propiedad. Te compartimos opciones que encajan contigo, sin compromiso.</p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn btn-wa js-wa" data-msg="general" href="#" target="_blank" rel="noopener">
+            <svg class="wa-icon"><use href="#wa"/></svg>Quiero comprar o rentar
+          </a>
+          <a class="btn btn-white js-wa" data-msg="vender" href="#" target="_blank" rel="noopener">Quiero vender mi propiedad</a>
+          <span class="note">Respuesta personal, normalmente el mismo día.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <a href="#" class="logo">ESPOORA<span>.</span></a>
+    <div class="foot-links">
+      <a class="js-wa" data-msg="general" href="#" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="mailto:contacto@espoora.com">contacto@espoora.com</a>
+      <a href="#" target="_blank" rel="noopener">Instagram</a>
+      <a href="#" target="_blank" rel="noopener">Facebook</a>
+    </div>
+    <span>© <span id="year"></span> Espoora · Guadalajara, Jal.</span>
+    <p class="credits">Fotos de zonas vía Wikimedia Commons: panorámica de Zapopan y Andares por Isacdaavid, casa en la Colonia Americana por Encogua (<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es" target="_blank" rel="noopener">CC BY-SA 4.0</a>).</p>
+  </div>
+</footer>
+
+<a class="wa-float js-wa" data-msg="general" href="#" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg class="wa-icon"><use href="#wa"/></svg>
+</a>
+
+<script>
+  // ===== Datos editables =====
+  const WHATSAPP = "5210000000000"; // Código de país + número, sin espacios ni "+"
+
+  const MENSAJES = {
+    general: "Hola Espoora, vi su página y me gustaría recibir información sobre propiedades en Guadalajara.",
+    vender: "Hola Espoora, me interesa vender mi propiedad. ¿Podemos platicar?"
+  };
+
+  const ZONAS = [
+    {
+      nombre: "Colonia Americana", muni: "Guadalajara", img: "img/americana.jpg",
+      texto: "Casonas restauradas, lofts y vida a pie entre cafés, galerías y la Av. Chapultepec. Alta demanda para renta.",
+      tags: ["Caminable", "Casonas", "Inversión"]
+    },
+    {
+      nombre: "Zona Real", muni: "Zapopan", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=75", // TODO: reemplazar por foto real de Zona Real
+      texto: "Cotos privados con áreas verdes, colegios y plazas a minutos. Pensada para familias que buscan tranquilidad.",
+      tags: ["Cotos privados", "Colegios", "Familias"]
+    },
+    {
+      nombre: "Puerta de Hierro", muni: "Zapopan", img: "img/puerta-de-hierro.jpg",
+      texto: "Torres residenciales con amenidades, Andares y corporativos a pie. Lo más exclusivo de la ciudad.",
+      tags: ["Torres", "Andares", "Plusvalía"]
+    }
+  ];
+
+  const IMG = id => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=900&q=75`;
+
+  const PROPIEDADES = [
+    { titulo: "Departamento con roof garden", zona: "Puerta de Hierro", tipo: "Departamento", op: "venta", precio: 9850000, rec: 2, banos: 2.5, m2: 145, badge: "Exclusiva", img: IMG("photo-1522708323590-d24dbb6b0267") },
+    { titulo: "Casa en coto con jardín", zona: "Zona Real", tipo: "Casa", op: "venta", precio: 11900000, rec: 4, banos: 4.5, m2: 380, badge: "Destacada", img: IMG("photo-1600596542815-ffad4c1539a9") },
+    { titulo: "Loft a dos calles de Chapultepec", zona: "Colonia Americana", tipo: "Departamento", op: "venta", precio: 4650000, rec: 1, banos: 1, m2: 72, badge: "Nuevo", img: IMG("photo-1502672260266-1c1ef2d93688") },
+    { titulo: "Penthouse con vista a la ciudad", zona: "Puerta de Hierro", tipo: "Departamento", op: "venta", precio: 24500000, rec: 3, banos: 3.5, m2: 310, img: IMG("photo-1512917774080-9991f1c4c750") },
+    { titulo: "Casona restaurada", zona: "Colonia Americana", tipo: "Casa", op: "venta", precio: 17800000, rec: 4, banos: 3, m2: 420, img: IMG("photo-1564013799919-ab600027ffc6") },
+    { titulo: "Casa contemporánea en privada", zona: "Zona Real", tipo: "Casa", op: "venta", precio: 8900000, rec: 3, banos: 3.5, m2: 260, img: IMG("photo-1600585154340-be6161a56a0c") },
+    { titulo: "Departamento amueblado", zona: "Colonia Americana", tipo: "Departamento", op: "renta", precio: 22000, rec: 2, banos: 1, m2: 85, badge: "Disponible ya", img: IMG("photo-1502672260266-1c1ef2d93688") },
+    { titulo: "Departamento en torre con amenidades", zona: "Puerta de Hierro", tipo: "Departamento", op: "renta", precio: 45000, rec: 2, banos: 2.5, m2: 140, img: IMG("photo-1522708323590-d24dbb6b0267") },
+    { titulo: "Casa en coto", zona: "Zona Real", tipo: "Casa", op: "renta", precio: 52000, rec: 3, banos: 3.5, m2: 290, img: IMG("photo-1600596542815-ffad4c1539a9") }
+  ];
+
+  // ===== Lógica =====
+  const waLink = text => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`;
+  const money = n => "$" + n.toLocaleString("es-MX") ;
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+  document.querySelectorAll(".js-wa").forEach(a => { a.href = waLink(MENSAJES[a.dataset.msg] || MENSAJES.general); });
+
+  document.getElementById("zones").innerHTML = ZONAS.map(z => `
+    <a class="zone" href="#propiedades" data-zona="${esc(z.nombre)}">
+      <img src="${z.img}" alt="${esc(z.nombre)}, ${esc(z.muni)}" loading="lazy">
+      <span class="zone-muni">${esc(z.muni)}</span>
+      <h3>${esc(z.nombre)}</h3>
+      <p>${esc(z.texto)}</p>
+      <div class="zone-tags">${z.tags.map(t => `<span>${esc(t)}</span>`).join("")}</div>
+      <span class="zone-link">Ver propiedades</span>
+    </a>`).join("");
+  const zonaSel = document.getElementById("zona");
+  zonaSel.insertAdjacentHTML("beforeend", ZONAS.map(z => `<option>${esc(z.nombre)}</option>`).join(""));
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  const state = { op: "venta", tipo: "", zona: "", q: "" };
+  const grid = document.getElementById("grid");
+
+  function render() {
+    const q = state.q.trim().toLowerCase();
+    const list = PROPIEDADES.filter(p =>
+      p.op === state.op &&
+      (!state.tipo || p.tipo === state.tipo) &&
+      (!state.zona || p.zona === state.zona) &&
+      (!q || `${p.titulo} ${p.zona} ${p.tipo}`.toLowerCase().includes(q))
+    );
+    if (!list.length) {
+      grid.innerHTML = `<div class="empty">No hay propiedades con esos filtros en este momento.<br><br>
+        <a class="btn btn-wa" href="${waLink("Hola Espoora, busco una propiedad y no la encontré en su página. ¿Me ayudan?")}" target="_blank" rel="noopener"><svg class="wa-icon"><use href="#wa"/></svg>Cuéntanos qué buscas</a></div>`;
+      return;
+    }
+    grid.innerHTML = list.map(p => {
+      const specs = [
+        p.rec && `${p.rec} rec`,
+        p.banos && `${p.banos} ${p.banos === 1 ? "baño" : "baños"}`,
+        p.m2 && `${p.m2} m²`
+      ].filter(Boolean).map(s => `<span>${s}</span>`).join("");
+      const msg = `Hola Espoora, me interesa "${p.titulo}" en ${p.zona} (${money(p.precio)}${p.op === "renta" ? "/mes" : ""}). ¿Sigue disponible?`;
+      return `<article class="card">
+        <div class="card-media">
+          <img src="${p.img}" alt="${esc(p.titulo)}" loading="lazy" onerror="this.remove()">
+          <span class="tag ${p.op === "renta" ? "rent" : ""}">${p.op === "renta" ? "En renta" : "En venta"}</span>
+          ${p.badge ? `<span class="badge">${esc(p.badge)}</span>` : ""}
+        </div>
+        <div class="card-body">
+          <div class="price">${money(p.precio)}${p.op === "renta" ? " <small>/ mes</small>" : ""}</div>
+          <div class="title">${esc(p.titulo)}</div>
+          <div class="loc">${esc(p.tipo)} · ${esc(p.zona)}</div>
+          <div class="specs">${specs}</div>
+          <a class="btn btn-wa" href="${waLink(msg)}" target="_blank" rel="noopener"><svg class="wa-icon"><use href="#wa"/></svg>Preguntar por WhatsApp</a>
+        </div>
+      </article>`;
+    }).join("");
+  }
+
+  function setOp(op) {
+    state.op = op;
+    document.querySelectorAll(".toggle button").forEach(b => b.classList.toggle("on", b.dataset.op === op));
+    render();
+  }
+
+  document.querySelectorAll(".toggle button").forEach(b => b.addEventListener("click", () => setOp(b.dataset.op)));
+  document.querySelectorAll(".nav-links a[data-op]").forEach(a => a.addEventListener("click", () => setOp(a.dataset.op)));
+  zonaSel.addEventListener("change", e => { state.zona = e.target.value; render(); });
+  document.querySelectorAll(".zone").forEach(z => z.addEventListener("click", () => { state.zona = zonaSel.value = z.dataset.zona; render(); }));
+  document.getElementById("tipo").addEventListener("change", e => { state.tipo = e.target.value; render(); });
+  document.getElementById("q").addEventListener("input", e => { state.q = e.target.value; render(); });
+
+  const nav = document.getElementById("nav");
+  const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 40);
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  render();
+</script>
+</body>
+</html>
